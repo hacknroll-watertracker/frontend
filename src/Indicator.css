@@ -1,0 +1,4 @@
+.liquid-text .liquid-text-postfix {
+    transform: translate(0, 40px);
+    font-family: cursive;
+}
