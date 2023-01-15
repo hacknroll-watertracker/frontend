@@ -13,11 +13,15 @@ import Indicator from './Indicator';
 const URL = 'https://hnr2023-watertracker-backend.onrender.com/api/v1/watertracker'
 
 function App() {
-  const [goalAmount, setGoalAmount] = React.useState(3.7);
+  if (!localStorage.goalAmount) {
+    localStorage.goalAmount = 3.7;
+  } 
+  const [goalAmount, setGoalAmount] = React.useState(localStorage.getItem("goalAmount") ? Number(localStorage.getItem("goalAmount")) : 3.7);
   const [totalAmount, setTotalAmount] = React.useState(0.0);
   const [amountDrank, setAmountDrank] = React.useState(0.0);
 
   const handleGoalSliderChange = (event, newGoal) => {
+    localStorage.goalAmount = newGoal
     setGoalAmount(newGoal);
   };
 
@@ -26,6 +30,7 @@ function App() {
   }
 
   const handleGoalInputChange = (event) => {
+    localStorage.goalAmount = Number(event.target.value)
     setGoalAmount(event.target.value === '' ? '' : Number(event.target.value));
   };
 
